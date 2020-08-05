@@ -69,14 +69,15 @@ class InvalidParserTest(unittest.TestCase):
 		self.assertEqual(p.parser("how to win"), ("Invalid",))
 		self.assertEqual(p.parser("Invalid"), ("Invalid",))
 		self.assertEqual(p.parser("!!!"), ("Invalid",))
-		self.assertEqual(p.parser("$$$", ("Invalid",))
+		self.assertEqual(p.parser("$$$"), ("Invalid",))
 		self.assertEqual(p.parser("True"), ("Invalid",))
 		self.assertEqual(p.parser("None"), ("Invalid",))
 		self.assertEqual(p.parser("1=1"), ("Invalid",))
 		self.assertEqual(p.parser("()"), ("Invalid",))
 		self.assertEqual(p.parser("check_input"), ("Invalid",))
-		self.assertEqual(p.parser("?"), ("Invalid",))
 		self.assertEqual(p.parser("\"\""), ("Invalid",))
 		self.assertEqual(p.parser("eval(true)"), ("Invalid",))
 		self.assertEqual(p.parser("eval(print(hello_world))"), ("Invalid",))
 
+if __name__ == "__main__":
+	unittest.main()
