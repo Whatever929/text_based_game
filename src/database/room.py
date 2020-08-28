@@ -4,7 +4,6 @@ from typing import Tuple, Dict, List
 
 class Room(object):
     def __init__(self, size: Tuple, database=None) -> None:
-        self.database = database
         self.generate_room_content = self.room_content_generator()
         self.generate_room_arrangement = self.room_arrangement_generator()
         self.size = size
