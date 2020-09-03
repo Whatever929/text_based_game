@@ -44,36 +44,37 @@ class Room(object):
     def access_room(self, room_number: str) -> List:
         return self.map[room_number]
 
-    def print_map(self) -> None:
+    def show_map(self) -> str:
         map_index = list(self.map)
         last_column = "1"
         last_row = "1"
+        map = ""
         for i in map_index:
             i = i.split(" ")
             if i[0] != last_row:
                 last_row = i[0]
-                print("\n", end="")
+                map += "\n"
                 if i[1] != "1":
                     for i in range(int(i[1]) - 1):
-                        print("⨉ ", end="")
-                    print("☐ ", end="")
+                        map += "⨉ "
+                    map += "☐ "
                     last_column = i[1]
                 else:
                     last_column = i[1]
-                    print("☐ ", end="")
+                    map += "☐ "
             else:
                 if int(i[1]) != (int(last_column) + 1):
                     for i in range(int(i[1]) - int(last_column)):
-                        print("⨉ ", end="")
-                    print("☐ ", end="")
+                        map += "⨉ "
+                    map += "☐ "
                     last_column = i[1]
                 else:
-                    print("☐ ", end="")
+                    map += "☐ "
                     last_column = i[1]
-
+        return map
 
 if __name__ == "__main__":
     room_a = Room((10, 15))
     for location, contents in room_a.map.items():
         print("The room {} has {}".format(location, contents))
-    room_a.print_map()
+    print(room_a.show_map())

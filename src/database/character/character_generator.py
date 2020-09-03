@@ -4,7 +4,7 @@ def character_generator(name: str, character_class: str, location:Tuple = (1,1),
     # Generate characters based on arguments passed. Hero is only generated once, while monster will be
     # generated multiple times throughout the game. Location of the monsters is required to put the monster back
     # to the room should the character flees.
-    character = {"name": name, "character_class": character_class, "location": location}
+    character = {"name": name, "character_class": character_class, "location": location, "effect": []}
 
     if character_class == "Mage":
         character["hp"] = 400
@@ -13,6 +13,7 @@ def character_generator(name: str, character_class: str, location:Tuple = (1,1),
         character["mana"] = 100
         character["inventory"] = ["Breadstix"]
         character["hunger"] = 100
+
 
     elif character_class == "Warrior":
         character["hp"] = 650
