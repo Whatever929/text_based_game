@@ -1,7 +1,7 @@
 from typing import Tuple
 
-from character.boss import Boss
-from character.random.name_generator import generate_boss_name
+from actor.boss import Boss
+from actor.random.name_generator import generate_boss_name
 
 
 class Beast(Boss):

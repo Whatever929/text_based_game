@@ -1,10 +1,10 @@
 from typing import Tuple
 import sys
 
-from character.character_generator import character_generator
+from actor.character import Character
 from map_resources.room import Room
-from character.beast import Beast
-from character.boss import Boss
+from actor.beast import Beast
+from actor.boss import Boss
 
 
 class Database(object):
