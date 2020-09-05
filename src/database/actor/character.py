@@ -10,17 +10,20 @@ class Character(object):
     def __init__(self, name: str, location:Tuple = (1,1)):
         self._name = name
         self._hp = 350
+        self._original = {"atk": 10, "hp": 350}
         self._atk = 10
         self._hunger = 100
         self._location = location
         self._effect = []
-        self._effect_book = []
 
-    def take_damage(self, damage: int) -> int:
+    def change_hp(self, change: int) -> int:
         # If 1 is passed, it signals the game to end.
-        self._hp -= damage
+        self._hp += change
         if self._hp <= 0:
             return 1
+        elif self._hp > self._original["hp"]:
+            self._hp = self._original["hp"]
+            return 2
         return 0
 
     def process_effect(self) -> None:
@@ -28,16 +31,36 @@ class Character(object):
             # Process all the effect in the character
             pass
 
-    def remove_effect(self, effect) -> None:
+    def remove_effect(self, effect:str) -> None:
         if effect in self._effect:
             self._effect.remove(effect)
 
-    def add_effect(self, effect) -> int:
+    def add_effect(self, effect:str, stackable = False) -> int:
         # Return 1 to signal effect already exist.
         if effect in self._effect:
-            return 1
+            if stackable == True:
+                self._effect[effect].intensity = +1
+                return 0
+            else:
+                return 1
         else:
             self._effect.append(effect)
+            return 0
+        
+    def change_atk(self, change:int) -> int:
+        self._atk += change
+        self.negative_to_zero("_atk")
+    
+    def change_original(self, spec, change: int) -> int:
+        self._original[spec] += change
+        if self._original[spec]
+
+    def negative_to_zero(self, attr:str) -> int:
+        # Return 0 if no correction, 1 if there is correction.
+        if getattr(self, attr) < 0:
+            setattr(self, attr, 0)
+            return 1
+        else:
             return 0
 
 
